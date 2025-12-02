@@ -31,7 +31,27 @@ def hack_cesar_sypher(message):
        possible_values.append(cesar_unsypher(message,-possible_key))
    return possible_values
 
-print(hack_cesar_sypher(message="psmgdsy"))
+def vigenere_sypher(message,key):
+    #return the crypted message using vigenere sypher method with a key
+    crypted_message = ""
+    # if the key length is not equal to the message length
+    missing_length = len(message) - len(key)
+
+    if missing_length > 0:
+        i=0
+        while missing_length > 0:
+            key += key[i%26]
+            missing_length -= 1
+            i+=1
+    print(key,message)
+    for char_msg,char_key in zip(message.lower(),key.lower()):
+        crypted_char = chr(ord(char_msg) + ord(char_key))
+        crypted_message +=crypted_char
+    return crypted_message
+
+
+
+print(vigenere_sypher(message="leandreestfumeur",key='abcd'))
 # print(string.ascii_letters)
 
 
