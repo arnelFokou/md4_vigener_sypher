@@ -17,4 +17,7 @@ def cesar_sypher(message,key):
         crypted_message += crypted_character
     return crypted_message
     
-print(cesar_sypher(message="bouz",key=4))
+def cesar_unsypher(message,key):
+    return cesar_sypher(message,-key)
+
+print(cesar_unsypher(message="fsy~",key=4))
