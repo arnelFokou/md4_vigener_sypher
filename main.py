@@ -24,7 +24,14 @@ def cesar_unsypher(message,key):
     #return the decrypted message using cesar sypher method with a key
     return cesar_sypher(message,-key)
 
-print(cesar_unsypher(message="psmgdsy",key=4))
+def hack_cesar_sypher(message):
+    #return all possible decrypted messages using cesar unsypher function with all possible keys
+   possible_values=[]
+   for possible_key in range(26):
+       possible_values.append(cesar_unsypher(message,-possible_key))
+   return possible_values
+
+print(hack_cesar_sypher(message="psmgdsy"))
 # print(string.ascii_letters)
 
 
