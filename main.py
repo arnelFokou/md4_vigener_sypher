@@ -38,11 +38,11 @@ def length_key_to_length_message(key,missing_length):
         key += key[i%26]
         missing_length -= 1
         i+=1
-
     return key
 
 
-def vigenere_sypher(message,key):
+def vigenere_sypher(message,key,sign=1):
+    #sign = 1 for sypher and -1 for unsypher, it helps to respect the DRY principle
     #return the crypted message using vigenere sypher method with a key
     crypted_message = ""
     # if the key length is not equal to the message length
@@ -53,16 +53,16 @@ def vigenere_sypher(message,key):
        
     print(key,message)
     for char_msg,char_key in zip(message.lower(),key.lower()):
-        crypted_char = chr(ord(char_msg) + ord(char_key))
+        crypted_char = chr(ord(char_msg) + ord(char_key) * sign)
         crypted_message +=crypted_char
     return crypted_message
 
-#def vigenere_unsipher(message,key):
-    #return the decrypted message using vigenere sypher method with a key
-    
+def vigenere_unsypher(message,key):
+    decrypted_message = vigenere_sypher(message=message, key=key,sign=-1)
+    return decrypted_message
 
 
-print(vigenere_sypher(message="abbe",key='cdia'))
+print(vigenere_unsypher(message="ceje",key='cdia'))
 # print(string.ascii_letters)
 
 
