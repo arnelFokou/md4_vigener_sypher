@@ -23,12 +23,12 @@ def cesar_sypher(message,key,cipher=True):
     return crypted_message
     
 
-# def hack_cesar_sypher(message):
-#     #return all possible decrypted messages using cesar unsypher function with all possible keys
-#    possible_values=[]
-#    for possible_key in range(26):
-#        possible_values.append(cesar_unsypher(message,-possible_key))
-#    return possible_values
+#return all possible decrypted messages using cesar unsypher function with all possible keys
+def hack_cesar_sypher(message_crypted):
+   possible_messages=[]
+   for possible_key in range(len(liste_characters)):
+       possible_messages.append(cesar_sypher(message_crypted,possible_key,cipher = False))
+   return possible_messages
 
 # def length_key_to_length_message(key,missing_length):
 #     #return a key with the same length as the message
@@ -74,7 +74,7 @@ def cesar_sypher(message,key,cipher=True):
 
 
 #print(vigenere_unsypher(message="ceje",key='cdia'))
-print(cesar_sypher(message="dchuwb",key=3,cipher=False))  # khoor
+print(hack_cesar_sypher(message_crypted="sdsdixphodslsh"))  # khoor
 
 
 
