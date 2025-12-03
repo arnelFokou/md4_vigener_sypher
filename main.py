@@ -16,11 +16,11 @@ def chr(number):
 def cesar_sypher(message,key,cipher=True):
    #cipher = True means encrypt the message and False means decrypt the message
     key = key if cipher else -key
-    crypted_message = ""
+    message_result = ""
     for char in message.lower():
         crypted_char = chr((ord(char) + key))
-        crypted_message += crypted_char
-    return crypted_message
+        message_result += crypted_char
+    return message_result
     
 
 #return all possible decrypted messages using cesar unsypher function with all possible keys
@@ -30,51 +30,21 @@ def hack_cesar_sypher(message_crypted):
        possible_messages.append(cesar_sypher(message_crypted,possible_key,cipher = False))
    return possible_messages
 
-# def length_key_to_length_message(key,missing_length):
-#     #return a key with the same length as the message
-#     i=0 #`index to iterate over the key`
-#     while missing_length > 0:
-#         key += key[i%26]
-#         missing_length -= 1
-#         i+=1
-#     return key
+#return a message crypted or decrypted function of the parameter cipher 
+def vigenere_sypher(message,key,cipher=True):
+    cipher = cipher if cipher else False
+
+    message_result = ""    
+
+    for index_char,char in enumerate(message):
+        current_key = ord( key[index_char % len(key)] ) 
+        crypted_char = cesar_sypher(char,current_key,cipher=cipher)
+        message_result += crypted_char
+    return message_result
 
 
-# def vigenere_sypher(message,key):
-#     #return the crypted message using vigenere sypher method with a key
-#     crypted_message = ""
-#     # if the key length is not equal to the message length
-#     missing_length = len(message) - len(key)
+print(vigenere_sypher(message="jftyitvrmjhrooherdpr",key='abbe',cipher = False))  
 
-#     if missing_length > 0:
-#         key = length_key_to_length_message(key,missing_length)
-       
-#     for char_msg,char_key in zip(message.lower(),key.lower()):
-#         crypted_char = cesar_sypher(char_msg,ord(char_key))
-#         crypted_message +=crypted_char
-#     return crypted_message
-
-# def vigenere_unsypher(message,key):
-
-#     #return the decrypted message using cesar unsipher function with a key
-#     decrypted_message = ""
-#     # if the key length is not equal to the message length
-#     missing_length = len(message) - len(key)
-
-#     if missing_length > 0:
-#         key = length_key_to_length_message(key,missing_length)
-       
-#     for char_msg,char_key in zip(message.lower(),key.lower()):
-#         crypted_char = cesar_sypher(char_msg,ord(char_key))
-#         crypted_message +=crypted_char
-#     return crypted_message
-
-#     decrypted_message = vigenere_sypher(message=message, key=key)
-#     return decrypted_message
-
-
-#print(vigenere_unsypher(message="ceje",key='cdia'))
-print(hack_cesar_sypher(message_crypted="sdsdixphodslsh"))  # khoor
 
 
 
