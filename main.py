@@ -1,23 +1,12 @@
 
 import string
 
-# liste_characters variable contains all lowercase letters from a to z
-liste_characters = string.ascii_lowercase
-
-# return the ordinar value of the character in liste_characters variable
-def ord(character):
-    return liste_characters.index(character)
-
-# return the character correspondant to the number in liste_characters variable
-def chr(number):
-    return liste_characters[number%26]
-
 # return the crypted or decrypted message depends on the value of parameter cypher
 def cesar_sypher(message,key,cipher=True):
    #cipher = True means encrypt the message and False means decrypt the message
     key = key if cipher else -key
-
-    message_result = [chr((ord(char) + key)) for char in message.lower()]
+    #1_114_112 represents the number of characters presents in utf-8
+    message_result = [chr((ord(char) + key) % 1_114_112) for char in message.lower()]
     return "".join(message_result)
     
 
@@ -39,8 +28,8 @@ def vigenere_sypher(message,key,cipher=True):
     return "".join(message_result)
 
 
-print(vigenere_sypher(message="bonjour",key='allo',cipher = True))
-#bzyxofc
+print(cesar_sypher(message="khoor#zruog",key=3,cipher = False))
+#khoor#zruog
 
 
 
